@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Toolong {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner (System.in);
+		String fullW = scan.nextLine();
+		int num = fullW.length() - 2;
+		//System.out.println(num);
+		String first = fullW.substring(0,1);
+		String end = fullW.substring(fullW.length() -1);
+		System.out.println(first +num+end);
+
+	}
+
+}
