@@ -1,0 +1,247 @@
+import java.util.Scanner;
+
+public class choose {
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		int option;
+
+		System.out.println("DING! DING! DING!");
+		System.out.println("It's another day teaching in the school of \"No Return.\"\n"
+				+ "You lacked motivation to even get up this morning because your classroom consists of a whopping 5 students. \n \n"
+				+ "YOU: \"Is anyone absent?\"\n");
+
+		System.out.println("Do you choose to: \n" + "1. Look around and check every single students faces\n"
+				+ "2. Assume they're all there and go along with your day.\n");
+		option = scan.nextInt();
+		if (option == 1) {
+			System.out.println("You notice the student Pris is absent.\n");
+
+			System.out.println("1. Ask where Pris is.\n" + "2. Ignore it and teach your lesson.");
+			option = scan.nextInt();
+			if (option == 1) {
+				System.out.println("Your students look at you blankly and say: \n\n" + "\"Who's Pris?\"");
+				System.out.println(
+						"\nYOU: What do you mean? She's the absolutely smartest human being ever created that somehow ended up in your class."
+								+ "\nStudents: \"Sorry sir, but there is no such person...\""
+								+ "\nAssuming they were pulling your leg, you ignore it and go on with your lessson"
+								+ "\n\n [Next Day~]\n"
+								+ "YOU (whispering): Another student gone...it seems like every time I sleep another person disappears.."
+								+ "Do you:" + "\n1. Just leave the classroom to search for the students"
+								+ "\n2. Call the police and report your missing students");
+				option = scan.nextInt();
+				if (option == 1) {
+					System.out.println("\n\n (Outside the classroom)\n\n"
+							+ "You see a random helicopter park in the clear fields of the school"
+							+ "\nStranger: \"Sir, please come with me\""
+							+ "\n\n Not questioning the man in a suit, you enter the helicopter"
+							+ "\n Hours later you arrive on a island and enter a tall, dark building"
+							+ "\n\nStranger:\"So it seems like you've noticed you're students have gone missing..\""
+							+ "\nYou nod your head still confused at the situation."
+							+ "\n\nStranger:\"Well, we took them. You can either be quiet for money or refuse to follow and face the consequences"
+							+ "\nDo you:" + "\n1. Accept the money and go on with your life"
+							+ "\n2. Start to fight back in attempts to find your students.");
+					option = scan.nextInt();
+					{
+						// done//
+
+						if (option == 1) {
+							System.out.println("\nYou accept the money and become the 7th richest man on the planet"
+									+ "\n\nTHE END.");
+
+							// done//
+						} else {
+							System.out.println("Two more men come out from the dark and start restraining you.\n"
+									+ "They throw you in a room..\n"
+									+ "But weirdly enough this room has a Switch and you find your two students playing Mario Kart 8 Deluxe"
+									+ "\n\"This isn't so bad,\"you think to yourself and pick up a controller to join the next round."
+									+ "\n\n\nTHE END.");
+
+						}
+					}
+					// done//
+				} else {
+					System.out.println("\nThe police arrives shortly and starts investigating the school."
+							+ "\nAfter an hour of searching, they do find a couple leads."
+							+ "\nPolice:\"Sir, you have been charged with kidnapping, now please come with us\"\n"
+							+ "\nThey handcuff you and give you a lollipop in hopes to keep you quiet\n"
+							+ "Confused you mumble to yourself, \"I should've been a comedian\"\n\n" + "THE END.");
+
+				}
+
+			} else {
+				System.out.println("You go back home and you sleep away the stress of teaching.\n\n" + "[Next day]\n"
+						+ "You come to school once again, miserable and tired.\n"
+						+ "You check attendence and notice ANOTHER student is missing.\n\n"
+						+ "YOU(mumbling): \"Is there a flu going around?\"");
+				System.out.println("1. Ignore it\n" + "2. Start asking around about the students' absence");
+				option = scan.nextInt();
+
+				/// done//
+				if (option == 1) {
+					System.out.println("You ignore it and continue the lesson."
+							+ "\nRandomly your three students stand up and start doing firework claps."
+							+ "\"Hmmmmm... why are people acting so weirdly?\""
+							+ "You go home that day and sleep it off." + "\n\n [Next Day~]"
+							+ "\nYou return to work finding that none of your students are present and you assume they've disappeared just like the other two."
+							+ "\nYou don't question the weird happenings because of how tired your are and walk out the door"
+							+ "\n\nYOU: \"Who needs students anyway?\"\n\n" + "THE END.");
+
+				} else {
+					System.out.println("You ask your students where Pris and Shanny are."
+							+ "\nThe students respond with a confused face, \"Who's that?\""
+							+ "\nTo show evidence you try to pull up the roster, but find the names missing from the list.\n\n"
+							+ "YOU: \"I SWEAR THEY WERE HERE LAST WEEK!!\""
+							+ "You check the yearbook, but their pictures have completely disappeared"
+							+ "\nYOU: I must be going crazy!! \n\n" + "Do you:\n"
+							+ "1. Ignore it and accept you're going crazy.\n"
+							+ "2. Run around and ask every staff member you see about their existence.");
+					option = scan.nextInt();
+					// done//
+					if (option == 1) {
+						System.out.println(
+								"You go home, take a nice bubble bath with your rubber duckies, in hopes to wash your insanity away."
+										+ "\n\n[Next Day~]"
+										+ "\n\n You enter your classroom discovering that now ALL your students are gone\n"
+										+ "Too tired to care, you go to the office, quit your job and become a full-time Twitch Streamer"
+										+ "\n\nTHE END.");
+
+						/// done//
+					} else {
+						System.out.println("You run around like a mad man screaming the names of your two students.\n"
+								+ "YOU: PRISSSS!! SHANNY!! WHERE ARE YOU?!?"
+								+ "\n\nSuddenly, a tall figure walks up to you, stopping your madness.\n"
+								+ "Principal: \"WHAT DO YOU THINK YOU'RE DOING?!? Go home RIGHT NOW or I am firing you!\""
+								+ "\nYou see the glare in her eyes and succumb to the order. You head home hoping this was all a bad dream..."
+								+ "\n\n\n [Next Day~]"
+								+ "\nYou're back in school and your classroom is completely empty. The janitor walks in and looks at you perplexed.\n"
+								+ "Janitor: \"Who are your, sir and why are you in this classroom\""
+								+ "\nYOU: What do you mean??? I work here and this is MY classroom!"
+								+ "\nJanitor: No you don't. This room has been empty for 10 years."
+								+ "Tired of the false accusations you attempt to run out the room."
+								+ "\nJanitor: Sir I advice you to not do that!"
+								+ "\nIgnoring the call, you continue to run, but suddenly you feel a throbbing pain in the back of your head"
+								+ "\nBefore you can process what happened, you lose your consciousness.."
+								+ "\n\n [When you wake up...]" + "\nYOU: Where am I?\n"
+								+ "You look around seeing all white and attempt to move"
+								+ "You see a sign that says \"Orlando Psychiatric Ward-2022/05/05\"" + "\n\nTHE END");
+
+					}
+
+				}
+			}
+
+		} else {
+			System.out.println("You teach your lesson and now you're in the teacher's lounge eating lunch. \n"
+					+ "You just remembered an errand you had to run.\n" + "I'll just get Pris to do it!!"
+					+ "\nBut then you remember not seeing her face in your class today"
+					+ "\nYOU: \"Mrs. Bob, did you see Pris today?\""
+					+ "\nYour fellow staff members looks at you with a questioning look"
+					+ "\nMrs.Bob: \"Who?\" I'm pretty sure out of your four students none of them are named Pris."
+					+ "\n\nDo you:" + "\n1. Argue back"
+					+ "\n2. Accept your mistake and continue eating your Chik-Fil-A");
+			option = scan.nextInt();
+			if (option == 1) {
+				System.out.println(
+						"\nYOU: \"You're WRONG!! She's the youngest student in my class. You'd think I'd notice if she was an actual person."
+								+ "\nMrs Bob:\"Ok, you caught me. I've been sending them to the janitor's office one by one. You can go check if you want."
+								+ "\nDo you:" + "\n1. Go to the Janitor's office"
+								+ "\n2. Assume she's joking and pretend to laugh");
+				option = scan.nextInt();
+				if (option == 1) {
+					// done//
+					System.out.println("After walking for a couple mins you arrive in front of the janitor's closet."
+							+ "\nSlowly you turn the door know, not knowing what to expect"
+							+ "\n\nSurprisingly, you DO find your two students in there, but they're completely distracted not evening noticing your entrance"
+							+ "\nThey are both sitting on a couch watching your Youtube videos on a flat screen TV."
+							+ "\nAwkwardly, you step out before they notice you and you leave pretending nothing happened."
+							+ "\n\nTHE END.  ");
+				} else {
+					System.out.println(
+							"You continue to eat your delicious chicken nuggest when suddenly you find a piece of paper in the your bag of food."
+									+ "\n\nLottery Ticket\n" + "Grand Prize: $100,000,000" + "\nDo you:"
+									+ "\n1. Leave it on the desk, assuming someone accidently dropped it in there"
+									+ "\n2. Scratch it and try your luck");
+					option = scan.nextInt();
+					// done/
+					if (option == 1) {
+						System.out
+								.println("\n\nYou leave the lottery ticket on the desk and clean up your eating area\n"
+										+ "As you're walking out the teacher's lounge, Mr. Bob comes inside to eat"
+										+ "\nBefore you could leave, you hear his voice behind you \n\n"
+										+ "Mr. Bob: \"OH MY GOSH!! I WONNNN!!! I'M QUITTING RIGHT NOW!!\""
+										+ "\nHe runs out of the room and to the office\n"
+										+ "Congratulations, now your school has a millionare teacher and unfortunately that's not you."
+										+ "\n\nTHE END.");
+					} else {
+						System.out
+								.println("\n\nYou pull out your lucky penny and proceed to scratch up the little card\n"
+										+ "One star.." + "\nTwo star.." + "\nTHREE STAR!!"
+										+ "\n\n YOU WON A MILLION DOLLARS!!\n"
+										+ "You are overjoyed seeing the three stars laying in front of you.\n"
+										+ "You take a deep breathe and try to collect your thoughts\n\n" + "Do you:"
+										+ "\n1.Run to the principal's office and quit your job. Who needs a job when you're a millionare?"
+										+ "\n2.Call your wife and kids and tell them you're moving to Hawaii");
+						option = scan.nextInt();
+						if (option == 1) {
+							// done//
+							System.out.println(
+									"You immediately run to your boss informing your forever leave and run out like a little kid with candy!\n"
+											+ "You buy more stock investments so your money never runs out. \n"
+											+ "Now you are set for life, except you accidently forgot to bring that small ticket with you"
+											+ "\n\nOops.\n\n\n" + "THE END.");
+						} else {
+							System.out.println("\n\nRing!Ring!RING!" + "\nYOU: Honey I won the-"
+									+ "\n\nBefore you could finish your statement, she cuts you off in an angry tone."
+									+ "\n\nWife: Kyle Dencker! WHERE IN THE WORLD ARE YOU?!? You're daughter is on stage in her tutu, looking around to see where her FATHER is."
+									+ "\nGreat. You forgot about your daughter's ballet performance and your wife was not happy."
+									+ "\nDo you:" + "\n1. Apologize, hang up the phone and hurry there"
+									+ "\n2. Try to explain the situation.");
+							option = scan.nextInt();
+							// done/
+							if (option == 1) {
+								System.out.println(
+										"\n\nYou rush to your daughter's performance and luckily you make it before the grand finale."
+												+ "\nDaughter: \"Mom! Dad! Did you see me jump so HIGH?!\n"
+												+ "You carry your daughter and congratulate her on her very first ballet solo.\n\n"
+												+ "YOU: \"By the way, I have a surprise for the both of you\"\n\n"
+												+ "You say as you pull out the lottery ticket from your back pocket"
+												+ "\n\"I wonder how they'll react?\"" + "\n\nTHE END.");
+								// done
+							} else {
+
+								System.out.println("YOU: \"No honey I-\""
+										+ "\n\nBefore you could explain the recent happenings she already hung up on you."
+										+ "\nYou forget about the money you just won because now you have to think of a million ways to make it up to your family\n\n"
+										+ "THE END.");
+							}
+						}
+					}
+
+				}
+
+			} else {
+				System.out.println("You continue to eat your Chik-Fil-A when suddenly your phone rings.\n" + "Do you:"
+						+ "\n1. Answer it.\n" + "2. Ignore the call.");
+				option = scan.nextInt();
+				// done//
+				if (option == 1) {
+					System.out.println("\n\nYOU: \"Hello? Who am I speaking to?\""
+							+ "\nFor a while, there is silence on the other end of the phone. You just hear heavy breathing.\n"
+							+ "Caller: \"Come home now.. there's something waiting for you.\""
+							+ "\nWithout questioning it, you pack up your stuff and go home.\n\n"
+							+ "After the short drive you are now in front of your house slowly opening your door."
+							+ "\n...\n" + "All:\"SURPRISE!!\"\n\n"
+							+ "After the sudden shock of people yelling in your face your realize today was actually your birthday.\n"
+							+ "You must've got too busy to notice, lol." + "\n\nTHE END.");
+					// done//
+				} else {
+					System.out.println(
+							"\n\nYou ignore the call, too lazy to pick up your phone only to be then bombarded with text notifications"
+									+ "\nThey read:\n"
+									+ "\"Where are you?!? It's your birthday and we prepared oatmeal cookies for you, I tried to surprise you but you won't even pick up\""
+									+ "\nAhh..you forgot it was your birthday due to the weird happenings lately. You should probably get home."
+									+ "\n\nTHE END.");
+				}
+			}
+
+		}
