@@ -1,18 +1,21 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.util.Arrays;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+import org.omg.Messaging.SyncScopeHelper;
+
 public class hangman extends JComponent {
 	public hangman() {
 	}
+	int wrong = 0;
 
-	String[] words = {"chair", "banjo", "agent", "abyss", "ninja", "sauce", "rhyme","ramen", "sushi","shark"};
-	
+
 	public void paintComponent(Graphics g) {
-		//Draws boxes for letters
+		// Draws boxes for letters
 		g.setColor(Color.MAGENTA);
 		g.fillRect(10, 520, 30, 30);
 		g.fillRect(50, 520, 30, 30);
@@ -20,15 +23,15 @@ public class hangman extends JComponent {
 		g.fillRect(10, 480, 30, 30);
 		g.fillRect(50, 480, 30, 30);
 		g.fillRect(90, 480, 30, 30);
-		
+
 		g.fillRect(10, 440, 30, 30);
 		g.fillRect(50, 440, 30, 30);
 		g.fillRect(90, 440, 30, 30);
-		
+
 		g.fillRect(10, 400, 30, 30);
 		g.fillRect(50, 400, 30, 30);
 		g.fillRect(90, 400, 30, 30);
-		
+
 		g.fillRect(10, 360, 30, 30);
 		g.fillRect(50, 360, 30, 30);
 		g.fillRect(90, 360, 30, 30);
@@ -36,72 +39,81 @@ public class hangman extends JComponent {
 		g.fillRect(10, 320, 30, 30);
 		g.fillRect(50, 320, 30, 30);
 		g.fillRect(90, 320, 30, 30);
-		
+
 		g.fillRect(10, 280, 30, 30);
 		g.fillRect(50, 280, 30, 30);
 		g.fillRect(90, 280, 30, 30);
-		
+
 		g.fillRect(10, 240, 30, 30);
 		g.fillRect(50, 240, 30, 30);
 		g.fillRect(90, 240, 30, 30);
-		
+
 		g.fillRect(10, 200, 30, 30);
 		g.fillRect(50, 200, 30, 30);
 		g.fillRect(90, 200, 30, 30);
-		
-		//Draws lines 
+
+		// Draws lines
 		g.fillRect(5, 150, 24, 3);
 		g.fillRect(31, 150, 24, 3);
 		g.fillRect(57, 150, 24, 3);
 		g.fillRect(83, 150, 24, 3);
 		g.fillRect(109, 150, 24, 3);
-		
+
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+
+		// Draws all the letters
+
+		g.drawString("Z", 58, 542);
+		g.drawString("Y", 18, 542);
+
+		g.drawString("X", 98, 502);
+		g.drawString("W", 58, 502);
+		g.drawString("V", 18, 502);
+
+		g.drawString("U", 98, 462);
+		g.drawString("T", 58, 462);
+		g.drawString("S", 18, 462);
+
+		g.drawString("R", 98, 422);
+		g.drawString("Q", 58, 422);
+		g.drawString("P", 18, 422);
+
+		g.drawString("O", 98, 382);
+		g.drawString("N", 58, 382);
+		g.drawString("M", 18, 382);
+
+		g.drawString("L", 98, 342);
+		g.drawString("K", 58, 342);
+		g.drawString("J", 18, 342);
+
+		g.drawString("I", 98, 302);
+		g.drawString("H", 58, 302);
+		g.drawString("G", 18, 302);
+
+		g.drawString("F", 98, 262);
+		g.drawString("E", 58, 262);
+		g.drawString("D", 18, 262);
+
+		g.drawString("C", 98, 222);
+		g.drawString("B", 58, 222);
+		g.drawString("A", 18, 222);
+
+		// drawing man stand
+
+		g.setColor(Color.WHITE);
+
+		g.fillRect(0, 10, 140, 3);
+		g.fillRect(70, 13, 3, 20);
 		
-		
-		//Draws all the letters
-		
-		g.drawString("Z",58 ,542 );
-		g.drawString("Y",18 ,542 );
-		
-		g.drawString("X",98 ,502 );
-		g.drawString("W",58 ,502 );
-		g.drawString("V",18 ,502 );
-		
-		g.drawString("U",98 ,462 );
-		g.drawString("T",58 ,462 );
-		g.drawString("S",18 ,462 );
-			
-		g.drawString("R",98 ,422 );
-		g.drawString("Q",58 ,422 );
-		g.drawString("P",18 ,422 );
-		
-		g.drawString("O",98 ,382 );
-		g.drawString("N",58 ,382 );
-		g.drawString("M",18 ,382 );
-		
-		g.drawString("L",98 ,342 );
-		g.drawString("K",58 ,342 );
-		g.drawString("J",18 ,342 );
-		
-		g.drawString("I",98 ,302 );
-		g.drawString("H",58 ,302 );
-		g.drawString("G",18 ,302 );
-		
-		g.drawString("F",98 ,262 );
-		g.drawString("E",58 ,262 );
-		g.drawString("D",18 ,262 );
-		
-		g.drawString("C",98 ,222 );
-		g.drawString("B",58 ,222 );
-		g.drawString("A",18 ,222 );
-		
-		
-		
-		
-		
-		
+		//draw body (put in if statement)
+		g.drawOval(60, 33, 20, 20);
+		g.drawRect(65, 53, 10, 40);
+		g.fillRect(45, 63, 20, 1);
+		g.fillRect(75, 63, 20, 1);
+		g.fillRect(65, 93, 1, 20);
+		g.fillRect(75, 93, 1, 20);
+
 	}
 
 	public static void main(String[] args) {
@@ -112,5 +124,11 @@ public class hangman extends JComponent {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.add(new hangman());
+		
+		
+		
+		String[] words = { "chair", "banjo", "agent", "abyss", "ninja", "sauce", "rhyme", "ramen", "sushi", "shark" };
+		
 	}
 }
+
