@@ -1,16 +1,33 @@
-package helloo;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-public class hangman extends JComponent {
+public class hangman extends JComponent implements KeyListener {
+	
+	String letter = "";
+	int lives;
+	char[] answer;
+	boolean[] given = new boolean[5];
 	public hangman() {
+		
+		lives = 6;
+	
+		
+		String[] words = { "chair", "banjo", "agent", "abyss", "ninja", "sauce", "rhyme", "ramen", "sushi", "shark" };
+		int chosen = (int) (Math.random()*9);
+		String choice = words[chosen];
+		answer = choice.toCharArray();
+		System.out.println(choice);
+	
+		
 	}
-	int wrong = 0;
+
 
 
 	public void paintComponent(Graphics g) {
@@ -63,11 +80,20 @@ public class hangman extends JComponent {
 
 		// Draws all the letters
 
+		
+		//need to put all booleans
 		g.drawString("Z", 58, 542);
+		//boolean Z = false;
+		
 		g.drawString("Y", 18, 542);
-
+		//boolean Z = false;
+		
 		g.drawString("X", 98, 502);
+		//boolean Z = false;
+		
 		g.drawString("W", 58, 502);
+		//boolean Z = false;
+		
 		g.drawString("V", 18, 502);
 
 		g.drawString("U", 98, 462);
@@ -117,18 +143,40 @@ public class hangman extends JComponent {
 
 	public static void main(String[] args) {
 
+		hangman temp = new hangman();
 		JFrame frame = new JFrame("hangman");
 		frame.setVisible(true);
 		frame.setSize(155, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setBackground(Color.BLACK);
-		frame.add(new hangman());
+		frame.add(temp);
+		frame.addKeyListener(temp);
 		
 		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		System.out.println((int)(arg0.getKeyChar() - 'a'));
+		char c = arg0.getKeyChar();
+		for(int i = 0; i<5; i++){
+			if(answer[i] == c){
+				System.out.println("right");
+			}
+		}
 		
-		String[] words = { "chair", "banjo", "agent", "abyss", "ninja", "sauce", "rhyme", "ramen", "sushi", "shark" };
-		int chosen = (int) (Math.random()*9);
-		String choice = words[chosen];
-		choice.toCharArray();
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
