@@ -1,12 +1,11 @@
+package helloo;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.util.Arrays;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-
-import org.omg.Messaging.SyncScopeHelper;
 
 public class hangman extends JComponent {
 	public hangman() {
@@ -128,7 +127,8 @@ public class hangman extends JComponent {
 		
 		
 		String[] words = { "chair", "banjo", "agent", "abyss", "ninja", "sauce", "rhyme", "ramen", "sushi", "shark" };
-		
+		int chosen = (int) (Math.random()*9);
+		String choice = words[chosen];
+		choice.toCharArray();
 	}
 }
-
