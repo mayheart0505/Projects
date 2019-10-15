@@ -3,25 +3,29 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 public class hangman extends JComponent implements KeyListener {
+	static ArrayList<Character> alpha = new ArrayList<Character>();
+
+	int checkWin = 0;
+	int hold = 0;
 	char[] screen = new char[5];
 	String letter = "";
-	int lives;
 	char[] answer;
 	int wrong = 0;
 	boolean[] given = new boolean[5];
 
 	public hangman() {
 
-		lives = 6;
 		Arrays.fill(screen, '_');
 
-		String[] wordsa = { "chair", "banjo", "agent", "abyss", "ninja", "sauce", "rhyme", "ramen", "sushi", "shark" };
+		String[] wordsa = { "chair", "grape", "pizza", "ramen", "sushi", "tiger", "panda", "mango", "ninja", "abyss" };
 		char[][] words = new char[wordsa.length][];
 		for (int i = 0; i < wordsa.length; i++) {
 			words[i] = wordsa[i].toCharArray();
@@ -33,41 +37,33 @@ public class hangman extends JComponent implements KeyListener {
 
 	public void paintComponent(Graphics g) {
 		// Draws boxes for letters
-		g.setColor(Color.MAGENTA);
-		g.fillRect(10, 520, 30, 30);
-		g.fillRect(50, 520, 30, 30);
 
-		g.fillRect(10, 480, 30, 30);
-		g.fillRect(50, 480, 30, 30);
-		g.fillRect(90, 480, 30, 30);
-
-		g.fillRect(10, 440, 30, 30);
-		g.fillRect(50, 440, 30, 30);
-		g.fillRect(90, 440, 30, 30);
-
-		g.fillRect(10, 400, 30, 30);
-		g.fillRect(50, 400, 30, 30);
-		g.fillRect(90, 400, 30, 30);
-
-		g.fillRect(10, 360, 30, 30);
-		g.fillRect(50, 360, 30, 30);
-		g.fillRect(90, 360, 30, 30);
-
-		g.fillRect(10, 320, 30, 30);
-		g.fillRect(50, 320, 30, 30);
-		g.fillRect(90, 320, 30, 30);
-
-		g.fillRect(10, 280, 30, 30);
-		g.fillRect(50, 280, 30, 30);
-		g.fillRect(90, 280, 30, 30);
-
-		g.fillRect(10, 240, 30, 30);
-		g.fillRect(50, 240, 30, 30);
-		g.fillRect(90, 240, 30, 30);
-
-		g.fillRect(10, 200, 30, 30);
-		g.fillRect(50, 200, 30, 30);
-		g.fillRect(90, 200, 30, 30);
+		drawBox(g, 'A');
+		drawBox(g, 'B');
+		drawBox(g, 'C');
+		drawBox(g, 'D');
+		drawBox(g, 'E');
+		drawBox(g, 'F');
+		drawBox(g, 'G');
+		drawBox(g, 'H');
+		drawBox(g, 'I');
+		drawBox(g, 'J');
+		drawBox(g, 'K');
+		drawBox(g, 'L');
+		drawBox(g, 'M');
+		drawBox(g, 'N');
+		drawBox(g, 'O');
+		drawBox(g, 'P');
+		drawBox(g, 'Q');
+		drawBox(g, 'R');
+		drawBox(g, 'S');
+		drawBox(g, 'T');
+		drawBox(g, 'U');
+		drawBox(g, 'V');
+		drawBox(g, 'W');
+		drawBox(g, 'X');
+		drawBox(g, 'Y');
+		drawBox(g, 'Z');
 
 		// Draws lines
 		g.fillRect(5, 150, 135, 3);
@@ -78,18 +74,13 @@ public class hangman extends JComponent implements KeyListener {
 
 		// Draws all the letters
 
-		// need to put all booleans
 		g.drawString("Z", 58, 542);
-		// boolean Z = false;
 
 		g.drawString("Y", 18, 542);
-		// boolean Z = false;
 
 		g.drawString("X", 98, 502);
-		// boolean Z = false;
 
 		g.drawString("W", 58, 502);
-		// boolean Z = false;
 
 		g.drawString("V", 18, 502);
 
@@ -129,20 +120,118 @@ public class hangman extends JComponent implements KeyListener {
 		g.fillRect(70, 13, 3, 20);
 
 		// draw body (put in if statement)
-		if (wrong == 1) {
+		if (wrong >= 1) {
 			g.drawOval(60, 33, 20, 20);
 		}
-		if (wrong == 2) {
+		if (wrong >= 2) {
 			g.drawRect(65, 53, 10, 40);
 		}
-		if (wrong == 2) {
+		if (wrong >= 3) {
+			g.fillRect(45, 63, 20, 1);
+		}
+		if (wrong >= 4) {
+			g.fillRect(75, 63, 20, 1);
+		}
+		if (wrong >= 5) {
+			g.fillRect(65, 93, 1, 20);
+		}
+		if (wrong >= 6) {
+			g.fillRect(75, 93, 1, 20);
+		}
+
+	}
+
+//changes color of box if letter is used already
+	public void drawBox(Graphics g, char letter) {
+
+		if (checkIfUsed(letter)) {
+			g.setColor(Color.BLACK);
+		} else {
+			g.setColor(Color.MAGENTA);
+		}
+
+		if (letter == 'Y') {
+			g.fillRect(10, 520, 30, 30);
+		}
+
+		if (letter == 'Z') {
+			g.fillRect(50, 520, 30, 30);
+		}
+		if (letter == 'V') {
+			g.fillRect(10, 480, 30, 30);
+		}
+
+		if (letter == 'W') {
+			g.fillRect(50, 480, 30, 30);
+		}
+		if (letter == 'X') {
+			g.fillRect(90, 480, 30, 30);
+		}
+		if (letter == 'S') {
+			g.fillRect(10, 440, 30, 30);
+		}
+		if (letter == 'T') {
+			g.fillRect(50, 440, 30, 30);
+		}
+		if (letter == 'U') {
+			g.fillRect(90, 440, 30, 30);
+		}
+		if (letter == 'P') {
+			g.fillRect(10, 400, 30, 30);
+		}
+		if (letter == 'Q') {
+			g.fillRect(50, 400, 30, 30);
+		}
+		if (letter == 'R') {
+			g.fillRect(90, 400, 30, 30);
 
 		}
-		g.fillRect(45, 63, 20, 1);
-		g.fillRect(75, 63, 20, 1);
-		g.fillRect(65, 93, 1, 20);
-		g.fillRect(75, 93, 1, 20);
+		if (letter == 'M') {
+			g.fillRect(10, 360, 30, 30);
+		}
+		if (letter == 'N') {
+			g.fillRect(50, 360, 30, 30);
+		}
+		if (letter == 'O') {
+			g.fillRect(90, 360, 30, 30);
+		}
+		if (letter == 'J') {
+			g.fillRect(10, 320, 30, 30);
+		}
+		if (letter == 'K') {
+			g.fillRect(50, 320, 30, 30);
+		}
+		if (letter == 'L') {
+			g.fillRect(90, 320, 30, 30);
+		}
+		if (letter == 'G') {
+			g.fillRect(10, 280, 30, 30);
+		}
+		if (letter == 'H') {
+			g.fillRect(50, 280, 30, 30);
+		}
+		if (letter == 'I') {
+			g.fillRect(90, 280, 30, 30);
+		}
+		if (letter == 'D') {
+			g.fillRect(10, 240, 30, 30);
+		}
+		if (letter == 'E') {
+			g.fillRect(50, 240, 30, 30);
+		}
+		if (letter == 'F') {
+			g.fillRect(90, 240, 30, 30);
+		}
 
+		if (letter == 'A') {
+			g.fillRect(10, 200, 30, 30);
+		}
+		if (letter == 'B') {
+			g.fillRect(50, 200, 30, 30);
+		}
+		if (letter == 'C') {
+			g.fillRect(90, 200, 30, 30);
+		}
 	}
 
 	public static void main(String[] args) {
@@ -158,19 +247,78 @@ public class hangman extends JComponent implements KeyListener {
 
 	}
 
+	public static boolean checkIfUsed(char l) {
+		for (char letters : alpha) {
+
+			if (letters == Character.toLowerCase(l))
+				return true;
+
+		}
+
+		return false;
+
+	}
+
+	/*
+	 * public static void printList(ArrayList list) { for(char letters : alpha) {
+	 * System.out.println(letters); } }
+	 */
+
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		System.out.println((int) (arg0.getKeyChar() - 'a'));
 		char c = arg0.getKeyChar();
+		hold = 0;
+
 		for (int i = 0; i < 5; i++) {
-			if (answer[i] == c) {
+
+			if (answer[i] == c && checkIfUsed(c) == false) {
 				screen[i] = c;
 				repaint();
-			} else {
-				wrong++;
-			}
 
+				checkWin = checkWin + 1;
+
+				System.out.println("checkWin " + checkWin);
+			} else {
+				hold++;
+			}
+			// System.out.println("hold "+ hold);
+		}
+
+		// update lose count
+		if (hold == 5 && checkIfUsed(c) == false) {
+			wrong++;
+			System.out.println(wrong);
+			repaint();
+		}
+		alpha.add(c);
+		// check lose
+		if (wrong == 6) {
+			alpha.clear();
+			// System.out.println("wrong " +wrong);
+			Arrays.fill(screen, '_');
+			wrong = 0;
+			checkWin = 0;
+			repaint();
+		}
+
+		if (checkWin == 5) {
+			/*int timeToWait = 2; // second
+			try {
+				for (int d = 0; d < timeToWait; d++) {
+					Thread.sleep(1000);
+				}
+			} catch (InterruptedException ie) {
+				Thread.currentThread().interrupt();
+			}*/
+
+			alpha.clear();
+			// printList(alpha);
+
+			wrong = 0;
+			Arrays.fill(screen, '_');
+			checkWin = 0;
 		}
 
 	}
