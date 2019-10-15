@@ -5,14 +5,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
+import java.util.Random;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 public class hangman extends JComponent implements KeyListener {
 	static ArrayList<Character> alpha = new ArrayList<Character>();
-
+	int gameDone =
 	int checkWin = 0;
 	int hold = 0;
 	char[] screen = new char[5];
@@ -20,18 +20,30 @@ public class hangman extends JComponent implements KeyListener {
 	char[] answer;
 	int wrong = 0;
 	boolean[] given = new boolean[5];
-
+	char[][] words;
+	int chosen;
+	
 	public hangman() {
 
 		Arrays.fill(screen, '_');
 
 		String[] wordsa = { "chair", "grape", "pizza", "ramen", "sushi", "tiger", "panda", "mango", "ninja", "abyss" };
-		char[][] words = new char[wordsa.length][];
+		System.out.println(Arrays.toString(wordsa));
+		for (int i=0; i<wordsa.length; i++) {
+			int index = (int) (Math.random()*9);
+			String temp = wordsa[i];
+			wordsa[i] = wordsa[index];
+			wordsa[index] = temp;
+			
+		}
+		System.out.println(Arrays.toString(wordsa));
+		words = new char[wordsa.length][];
 		for (int i = 0; i < wordsa.length; i++) {
 			words[i] = wordsa[i].toCharArray();
 		}
-		int chosen = (int) (Math.random() * 9);
+		chosen = 0;
 		answer = words[chosen];
+		
 
 	}
 
@@ -302,7 +314,7 @@ public class hangman extends JComponent implements KeyListener {
 			checkWin = 0;
 			repaint();
 		}
-
+		//checks if you won and resets
 		if (checkWin == 5) {
 			/*int timeToWait = 2; // second
 			try {
@@ -315,10 +327,19 @@ public class hangman extends JComponent implements KeyListener {
 
 			alpha.clear();
 			// printList(alpha);
-
+			
 			wrong = 0;
 			Arrays.fill(screen, '_');
+			chosen++;
+			answer = words[chosen];
 			checkWin = 0;
+			gameDone++;
+			System.out.println(answer);
+			
+		}
+		
+		if(gameDone == 10){
+			System.exit(0);
 		}
 
 	}
