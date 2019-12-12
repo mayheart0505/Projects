@@ -29,10 +29,80 @@
 
 
 //+++++++++++++++++++++++++++++++++++++++++++++| MAIN |+++++++++++++++++++++++++++++++++++++++++++++++
+void moveStraight(int encoderCount)
+{
+							// Robot waits for 2000 milliseconds before executing program
+
+	SensorValue[rightEncoder] = 0;	  // Set the encoder so that it starts counting at 0
+	SensorValue[leftEncoder]  = 0;	  // Set the encoder so that it starts counting at 0
+
+	while(abs(SensorValue[rightEncoder]) < encoderCount)		// Creates an infinite loop, since "true" always evaluates to true
+	{
+		if(abs(SensorValue[rightEncoder]) == abs(SensorValue[leftEncoder])) // If rightEncoder has counted the same amount as leftEncoder:
+		{
+			// Move Forward
+			motor[rightMotor] = 80;		    // Right Motor is run at power level 80
+			motor[leftMotor]  = 80;		    // Left Motor is run at power level 80
+		}
+		else if(abs(SensorValue[rightEncoder]) > abs(SensorValue[leftEncoder])	// If rightEncoder has counted more encoder counts
+		{
+			// Turn slightly right
+			motor[rightMotor] = 52.85;		    // Right Motor is run at power level 60
+			motor[leftMotor]  = 103;		    // Left Motor is run at power level 80
+		}
+		else	// Only runs if leftEncoder has counted more encoder counts
+		{
+			// Turn slightly left
+			motor[rightMotor] = 103;		    // Right Motor is run at power level 80
+			motor[leftMotor]  = 52.85;		    // Left Motor is run at power level 60
+		}
+	}
+}
+
+
+
+void turnRight(int encoderCount){
+
+							// Robot waits for 2000 milliseconds before executing program
+
+	SensorValue[rightEncoder] = 0;	  // Set the encoder so that it starts counting at 0
+	SensorValue[leftEncoder]  = 0;	  // Set the encoder so that it starts counting at 0
+
+	while(abs(SensorValue[rightEncoder]) < encoderCount)		// Creates an infinite loop, since "true" always evaluates to true
+	{
+
+	  motor[rightMotor] = -63;
+    motor[leftMotor] = 	63;
+	}
+}
+void turnLeft(int encoderCount){
+
+							// Robot waits for 2000 milliseconds before executing program
+
+	SensorValue[rightEncoder] = 0;	  // Set the encoder so that it starts counting at 0
+	SensorValue[leftEncoder]  = 0;	  // Set the encoder so that it starts counting at 0
+
+	while(abs(SensorValue[rightEncoder]) < encoderCount)		// Creates an infinite loop, since "true" always evaluates to true
+	{
+
+	  motor[rightMotor] = 63;
+    motor[leftMotor] = 	-63;
+	}
+}
 task main()
 {
-	wait1Msec(2000);							// Robot waits for 2000 milliseconds before executing program
+	moveStraight(150);
+	wait1Msec(2000);
+	turnRight(-187);
+	wait1Msec(2000);
+	moveStraight(100)
+	turnRight(187);
+	moveStraight(100);
+	turnRight(187);
 
+};
+								// Robot waits for 2000 milliseconds before executing program
+	/*
 	SensorValue[rightEncoder] = 0;	  // Set the encoder so that it starts counting at 0
 	SensorValue[leftEncoder]  = 0;	  // Set the encoder so that it starts counting at 0
 
@@ -56,7 +126,7 @@ task main()
 			motor[rightMotor] = 100;		    // Right Motor is run at power level 80
 			motor[leftMotor]  = 52.85;		    // Left Motor is run at power level 60
 		}
-	}
+	}*/
 
-}
+
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
