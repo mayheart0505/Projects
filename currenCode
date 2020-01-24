@@ -93,8 +93,23 @@ void turnLeft(int encoderCount){
 	motor[rightMotor] = 0;
 }
 
+void armUp(int armVal)
+{
+	while(SensorValue[pot] < armVal)
+	{
+		motor[armMotor] = 30;
+	}
+	motor[armMotor] = 0;
+}
 
-
+void armDown(int armVal)
+{
+	while(SensorValue[pot] < armVal)
+	{
+		motor[armMotor] = -30;
+	}
+	motor[armMotor] = 0;
+}
 task main ()
 {
 	while(1==1)
