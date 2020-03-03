@@ -1,0 +1,25 @@
+package bringHome;
+
+public class gradeCheck {
+
+	public static void main(String[] args) {
+		int [] grades = {25,65,85};
+		int total = 0;
+		int min = 300;
+		double average;
+		
+		for(int i = 0; i<grades.length; i++) {
+			total += grades[i];
+			if(grades[i]<min) {
+				min = grades[i];
+				//System.out.println("Min: " + min);
+			}
+			//System.out.println("Total: " +total);
+		}
+		
+		total = total - min;
+		average = (double)total/(grades.length-1);
+		System.out.println(average);
+	}
+
+}
