@@ -1,0 +1,681 @@
+/*
+ Rainbowduino v3.0 Library examples:  Cube1
+
+ Sets pixels on 3D plane (4x4x4 cube)
+
+  //Set (Z,X,Y):(3,0,3) pixel GREEN
+  Rb.setPixelZXY(3,0,3,0x00FF00); //uses 24bit RGB color Code
+  delay(10);
+  */
+
+
+#include <Rainbowduino.h>
+/*
+ Color Scheme:
+ 0x36086B = purple
+ 0x87FF37 = green
+ 
+ */
+ 
+ int red [7] = {255, 255, 255, 0, 0, 127,0};
+ int green[7] ={0, 128, 255, 153, 255, 0,0};
+ int blue [7] = {0, 0, 0, 0, 255, 255,0};
+ int r = 0;
+ int b = 0;
+ int g = 0;
+ int pick = 0;
+ int y =0;
+ 
+void horPlain(int z){
+  Rb.setPixelZXY(z,0,0, 255,255,255);
+  Rb.setPixelZXY(z,0,1, 255,255,255);
+  Rb.setPixelZXY(z,0,2, 255,255,255);
+  Rb.setPixelZXY(z,0,3, 255,255,255);
+  Rb.setPixelZXY(z,1,0, 255,255,255);
+  Rb.setPixelZXY(z,1,1, 255,255,255);
+  Rb.setPixelZXY(z,1,2, 255,255,255);
+  Rb.setPixelZXY(z,1,3, 255,255,255);
+  Rb.setPixelZXY(z,2,0, 255,255,255);
+  Rb.setPixelZXY(z,2,1, 255,255,255);
+  Rb.setPixelZXY(z,2,2, 255,255,255);
+  Rb.setPixelZXY(z,2,3, 255,255,255);
+  Rb.setPixelZXY(z,3,0, 255,255,255);
+  Rb.setPixelZXY(z,3,1, 255,255,255);
+  Rb.setPixelZXY(z,3,2, 255,255,255);
+  Rb.setPixelZXY(z,3,3, 255,255,255);
+}
+
+void oneRow(int x, int y){
+  for(int j = 0; j<=3; j++){
+     Rb.setPixelZXY(j,x,y, red[r],green[g],blue[b]);
+  }
+}
+void oneWhite(int x, int y){
+  for(int j = 0; j<=3; j++){
+     Rb.setPixelZXY(j,x,y, 255,255,255);
+  }
+ 
+}
+
+void outside(int z){
+  Rb.setPixelZXY(z,0,0, 0,0,0);
+  Rb.setPixelZXY(z,0,1,  0,0,0);
+  Rb.setPixelZXY(z,0,2, 0,0,0);
+  Rb.setPixelZXY(z,0,3, 0,0,0);
+  Rb.setPixelZXY(z,3,1,  0,0,0);
+  Rb.setPixelZXY(z,3,2,  0,0,0);
+  Rb.setPixelZXY(z,3,3,  0,0,0);
+  Rb.setPixelZXY(z,2,3,  0,0,0);
+  Rb.setPixelZXY(z,1,3,  0,0,0);
+  Rb.setPixelZXY(z,3,0,  0,0,0);
+  Rb.setPixelZXY(z,1,0,  0,0,0);
+  Rb.setPixelZXY(z,2,0, 0,0,0);
+}
+
+void inside(int z){
+  Rb.setPixelZXY(z,1,1, 0,0,0);
+  Rb.setPixelZXY(z,2,1,  0,0,0);
+  Rb.setPixelZXY(z,1,2, 0,0,0);
+  Rb.setPixelZXY(z,2,2,  0,0,0);
+}
+
+
+void wall(int x){
+  r = 5;
+  g = 5;
+  b = 5;
+ oneRow(x, 0);
+ oneRow(x, 1);
+ oneRow(x, 2);
+ oneRow(x, 3);
+}
+
+void wallClear(int x){
+  r = 0;
+  g = 0;
+  b = 0;
+ oneRow(x, 0);
+ oneRow(x, 1);
+ oneRow(x, 2);
+ oneRow(x, 3);
+}
+  
+void setup()
+{
+  Rb.init(); //initialize Rainbowduino driver
+}
+
+void loop()
+{
+  y=0;
+ r = 0;
+  b =0;
+  g=0;
+
+
+
+
+
+
+
+//1st Animation
+  
+  for(int k = 0; k<4; k++){
+  for(int j =0; j<4; j++){
+  for(int i = 0; i< 4; i++){
+    Rb.setPixelZXY(i,j,k,0xFFFFFF);
+  }
+  }
+  }
+
+
+//4th ROW
+
+  for(int i = 0; i<4; i++){
+  Rb.setPixelZXY(0,i,3, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  delay(100);
+  }
+
+
+ for(int i = 2 ; i>=0; i--){
+  Rb.setPixelZXY(0,3,i, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+    if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+  for(int i = 2 ; i>=0; i--){
+  Rb.setPixelZXY(0,i,0, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+    if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+  for(int i = 1; i<3; i++){
+  Rb.setPixelZXY(0,0,i, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+    for(int i = 1; i<3; i++){
+  Rb.setPixelZXY(0,i,2, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+  
+  for(int i = 1; i<2; i++){
+  Rb.setPixelZXY(0,2,i, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+
+  for(int i = 1; i>=1; i--){
+  Rb.setPixelZXY(0,i,1, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+
+//3rd last row
+  
+  for(int i = 1; i<=2; i++){
+  Rb.setPixelZXY(1,i,1, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+
+  for(int i = 2; i>=0; i--){
+  Rb.setPixelZXY(1,i,2, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+   for(int i = 1; i>=0; i--){
+  Rb.setPixelZXY(1,0,i, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+  
+   for(int i = 1; i<=3; i++){
+  Rb.setPixelZXY(1,i,0, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+  
+  for(int i = 1; i<=3; i++){
+  Rb.setPixelZXY(1,3,i, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+  for(int i = 2; i>=0; i--){
+  Rb.setPixelZXY(1,i,3, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+  //2nd row
+
+  for(int i = 0; i<4; i++){
+  Rb.setPixelZXY(2,i,3, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+
+ for(int i = 2 ; i>=0; i--){
+  Rb.setPixelZXY(2,3,i, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+    if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+  for(int i = 2 ; i>=0; i--){
+  Rb.setPixelZXY(2,i,0, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+    if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+  for(int i = 1; i<3; i++){
+  Rb.setPixelZXY(2,0,i, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+    for(int i = 1; i<3; i++){
+  Rb.setPixelZXY(2,i,2, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+  
+  for(int i = 1; i<2; i++){
+  Rb.setPixelZXY(2,2,i, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+
+  for(int i = 1; i>=1; i--){
+  Rb.setPixelZXY(2,i,1, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+//1st row
+
+  
+ for(int i = 1; i<=2; i++){
+  Rb.setPixelZXY(3,i,1, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+
+  for(int i = 2; i>=0; i--){
+  Rb.setPixelZXY(3,i,2, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+   for(int i = 1; i>=0; i--){
+  Rb.setPixelZXY(3,0,i, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+  
+   for(int i = 1; i<=3; i++){
+  Rb.setPixelZXY(3,i,0, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+  
+  for(int i = 1; i<=3; i++){
+  Rb.setPixelZXY(3,3,i, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+
+  for(int i = 2; i>=0; i--){
+  Rb.setPixelZXY(3,i,3, red[r],green[g],blue[b]);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+  delay(100);
+  }
+delay(1000);
+
+
+//2nd Animation
+  outside(3);
+delay (150);
+outside(2);
+delay (150);
+outside(1);
+delay (150);
+outside(0);
+delay (200);
+inside(3);
+delay(150);
+inside(2);
+delay(150);
+inside(1);
+delay(150);
+inside(0);
+delay(150);
+
+
+//3rd Animation 
+horPlain(0);
+delay(150);
+horPlain(1);
+delay(150);
+horPlain(2);
+delay(150);
+horPlain(3);
+delay(150);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ r = 0;
+  b =0;
+  g=0;
+  for(int k = 0; k<4; k++){
+  for(int j =0; j<4; j++){
+  for(int i = 0; i< 4; i++){
+    Rb.setPixelZXY(i,j,k,0xFFFFFF);
+  }
+  }
+  }
+
+//3rd animation
+
+while(y<3){
+ oneRow(0,0);
+ delay(70);
+ oneRow(1,0);
+ oneWhite(0,0);
+ delay(70);
+ oneRow(2,0);
+ oneWhite(1,0);
+ delay(70);
+ oneRow(3,0);
+ oneWhite(2,0);
+ delay(70);
+ oneRow(3,1);
+ oneWhite(3,0);
+ delay(70);
+ oneRow(3,2);
+ oneWhite(3,1);
+ delay(70);
+ oneRow(3,3);
+ oneWhite(3,2);
+ delay(70);
+ oneRow(2,3);
+ oneWhite(3,3);
+ delay(70);
+ oneRow(1,3);
+ oneWhite(2,3);
+ delay(70);
+ oneRow(0,3);
+ oneWhite(1,3);
+ delay(70);
+ oneRow(0,2);
+ oneWhite(0,3);
+ delay(70);
+ oneRow(0,1);
+ oneWhite(0,2);
+ delay(70);
+ oneRow(0,0);
+ oneWhite(0,1);
+
+ y++;
+}
+ 
+ 
+ 
+ 
+ //2nd Animation
+  
+  r = 0;
+  b =0;
+  g=0;
+
+
+for(int i =0; i<=3; i++){
+ oneRow(i,0);
+ delay(70);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+}
+for(int i = 1; i<=3; i++){
+ oneRow(3,i);
+ delay(70);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+}
+for(int i = 2; i>=0;i--){
+  oneRow(i,3);
+ delay(70);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+}
+for(int i = 2; i>=0;i--){
+  oneRow(0,i);
+ delay(70);
+  r++;
+  b++;
+  g++;
+  if(r == 6 && b == 6 && g == 6){
+    r = 0;
+    b =0;
+    g =0;
+    }
+}
+delay(300);
+
+
+//5th Animation
+outside(0);
+delay (150);
+outside(1);
+delay (150);
+outside(2);
+delay (150);
+outside(3);
+delay (200);
+inside(0);
+delay(150);
+inside(1);
+delay(150);
+inside(2);
+delay(150);
+inside(3);
+delay(350);
+
+wall(0);
+delay (200);
+wall(1);
+wallClear(0);
+delay(200);
+wall(2);
+wallClear(1);
+delay(200);
+wall(3);
+wallClear(2);
+delay(200);
+
+
+
+
+
+
+
+  
+  delay(20);
+}
