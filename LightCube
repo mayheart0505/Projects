@@ -26,14 +26,14 @@
  int pick = 0;
  int y =0;
  
-void horPlain(int z){
-  Rb.setPixelZXY(z,0,0, 255,255,255);
-  Rb.setPixelZXY(z,0,1, 255,255,255);
-  Rb.setPixelZXY(z,0,2, 255,255,255);
-  Rb.setPixelZXY(z,0,3, 255,255,255);
-  Rb.setPixelZXY(z,1,0, 255,255,255);
-  Rb.setPixelZXY(z,1,1, 255,255,255);
-  Rb.setPixelZXY(z,1,2, 255,255,255);
+void horPlain(int z, int g, int b){
+  Rb.setPixelZXY(z,0,0, 255,g,b);
+  Rb.setPixelZXY(z,0,1, 255,g,b);
+  Rb.setPixelZXY(z,0,2, 255,g,b);
+  Rb.setPixelZXY(z,0,3, 255,g,b);
+  Rb.setPixelZXY(z,1,0, 255,g,b);
+  Rb.setPixelZXY(z,1,1, 255,g,b);
+  Rb.setPixelZXY(z,1,2, 255,g,b);
   Rb.setPixelZXY(z,1,3, 255,255,255);
   Rb.setPixelZXY(z,2,0, 255,255,255);
   Rb.setPixelZXY(z,2,1, 255,255,255);
@@ -639,7 +639,7 @@ for(int i = 2; i>=0;i--){
 }
 delay(300);
 
-
+/*
 //5th Animation
 outside(0);
 delay (150);
@@ -670,9 +670,10 @@ wall(3);
 wallClear(2);
 delay(200);
 
+*/
 
-
-
+horPlain(0);
+delay (500);
 
 
 
